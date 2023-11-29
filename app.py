@@ -8,7 +8,6 @@ Original file is located at
 """
 
 import streamlit as st
-import numpy as np
 from keras.preprocessing import image
 from keras.applications.mobilenet_v2 import preprocess_input, decode_predictions
 from tensorflow.keras.applications import MobileNetV2

@@ -1,9 +1,15 @@
 
+pip install tensorflow
 
 import streamlit as st
+import numpy as np
+from keras.models import load_model
+from keras.preprocessing import image
+from keras.applications.mobilenet_v2 import preprocess_input
 
 from tensorflow.keras.applications import MobileNetV2
 
+# Rest of your code remains the same...
 
 
 # Load the pre-trained MobileNetV2 model for image preprocessing

@@ -8,14 +8,10 @@ Original file is located at
 """
 
 
-# Mounting Google Drive
-from google.colab import drive
-drive.mount('/content/drive')
-
 from keras.models import load_model
 
 # Load the trained model for defect detection
-defect_model_path = '/content/drive/My Drive/defect model/defect_model.h5'
+defect_model_path = 'defect_model.h5'
 defect_model = load_model(defect_model_path)
 
 # Save this content in a file named app.py
@@ -31,7 +27,7 @@ from tensorflow.keras.applications import MobileNetV2
 pretrained_model = MobileNetV2(weights='imagenet', include_top=True)
 
 # Load the trained model for defect detection
-defect_model = defect_model  # Replace 'model' with the actual name of your model
+defect_model = defect_model.h5  # Replace 'model' with the actual name of your model
 
 def classify_image(img_path):
     # Load and preprocess the image

@@ -7,15 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1htGmCbLS-OPW0IoNnTyafX4kNNoBQJrG
 """
 
-
-from keras.models import load_model
-
-# Load the trained model for defect detection
-defect_model_path = 'defect_model.h5'
-defect_model = load_model(defect_model_path)
-
-# Save this content in a file named app.py
-
 import streamlit as st
 import numpy as np
 from keras.preprocessing import image

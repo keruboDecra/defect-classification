@@ -19,6 +19,10 @@ img_width, img_height = 150, 150
 # Define the feature extraction model
 feature_model = MobileNetV2(weights='imagenet', include_top=False, input_shape=(img_width, img_height, 3))
 
+from tensorflow.keras.layers import Flatten
+
+# ...
+
 def classify_image(img_path):
     # Load and preprocess the image
     img = image.load_img(img_path, target_size=(img_width, img_height))
@@ -29,16 +33,18 @@ def classify_image(img_path):
     # Extract features using MobileNetV2
     features = feature_model.predict(img_array)
 
+    # Flatten the spatial dimensions
+    features_flat = Flatten()(features)
+
     # Print information for debugging
-    print("Shape of features:", features.shape)
+    print("Shape of features:", features_flat.shape)
     
     # Initialize prediction variable
     prediction = None
 
     try:
         # Predict defect using the trained model
-        prediction = defect_model.predict(features)
-        print("Prediction:", prediction)
+        prediction = defect_model.predict(features_flat)
         print("Prediction shape:", prediction.shape)
     except Exception as e:
         print("Error during prediction:", str(e))
@@ -48,7 +54,6 @@ def classify_image(img_path):
         return prediction[0][0]
     else:
         return None
-
 
 
 # Streamlit UI

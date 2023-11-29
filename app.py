@@ -6,6 +6,7 @@ from keras.models import load_model
 from keras.preprocessing import image
 from keras.applications.mobilenet_v2 import preprocess_input
 
+from tensorflow.keras.preprocessing import image
 
 
 def classify_image(img_path):

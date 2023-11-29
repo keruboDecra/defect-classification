@@ -38,6 +38,7 @@ def classify_image(img_path):
     try:
         # Predict defect using the trained model
         prediction = defect_model.predict(features)
+        print("Prediction:", prediction)
         print("Prediction shape:", prediction.shape)
     except Exception as e:
         print("Error during prediction:", str(e))
@@ -47,6 +48,7 @@ def classify_image(img_path):
         return prediction[0][0]
     else:
         return None
+
 
 
 # Streamlit UI

@@ -11,8 +11,9 @@ from tensorflow.keras.preprocessing import image
 
 def classify_image(img_path):
     # Load and preprocess the image
-    img = image.load_img(img_path, target_size=(img_width, img_height))
-    img_array = image.img_to_array(img)
+    img = Image.open(img_path).convert("RGB")
+    img = img.resize((img_width, img_height))
+    img_array = np.array(img)
     img_array = np.expand_dims(img_array, axis=0)
     img_array = preprocess_input(img_array)
 
@@ -23,6 +24,7 @@ def classify_image(img_path):
     prediction = defect_model.predict(features)
 
     return prediction[0][0]
+
 
 
 # Streamlit UI

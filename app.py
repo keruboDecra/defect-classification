@@ -8,9 +8,7 @@ Original file is located at
 """
 
 import streamlit as st
-from keras.preprocessing import image
-from keras.applications.mobilenet_v2 import preprocess_input, decode_predictions
-from tensorflow.keras.applications import MobileNetV2
+
 
 
 # Load the pre-trained MobileNetV2 model for image preprocessing

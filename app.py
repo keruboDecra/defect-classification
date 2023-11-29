@@ -24,12 +24,20 @@ def classify_image(img_path):
         # Predict defect using the trained model
         prediction = defect_model.predict(features)
 
-        print(f"Prediction Value: {prediction[0][0]}")  # Add this line
-
-        return prediction[0][0]
+        if prediction is not None:  # Add this line
+            print(f"Prediction Value: {prediction[0][0]}")
+            if prediction[0][0] > 0.5:
+                print("Defect Detected!")
+                return "Defect Detected!"
+            else:
+                print("No Defect Detected.")
+                return "No Defect Detected."
+        else:
+            print("Error during classification. Please check the logs for details.")
+            return "Error during classification. Please check the logs for details."
     except Exception as e:
         print(f"Error during classification: {e}")
-        return None
+        return "Error during classification. Please check the logs for details."
 
 
 

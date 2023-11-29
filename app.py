@@ -31,10 +31,18 @@ def classify_image(img_path):
     # Extract features using MobileNetV2
     features = feature_model.predict(img_array)
 
-    # Predict defect using the trained model
-    prediction = defect_model.predict(features)
+    # Print information for debugging
+    print("Shape of features:", features.shape)
+    
+    try:
+        # Predict defect using the trained model
+        prediction = defect_model.predict(features)
+        print("Prediction shape:", prediction.shape)
+    except Exception as e:
+        print("Error during prediction:", str(e))
 
     return prediction[0][0]
+
 
 # Streamlit UI
 st.title("Defect Detection Dashboard")

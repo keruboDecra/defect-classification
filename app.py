@@ -1,3 +1,4 @@
+# app.py
 
 import streamlit as st
 import numpy as np
@@ -7,14 +8,18 @@ from keras.applications.mobilenet_v2 import preprocess_input
 
 from tensorflow.keras.applications import MobileNetV2
 
-# Rest of your code remains the same...
-
-
 # Load the pre-trained MobileNetV2 model for image preprocessing
 pretrained_model = MobileNetV2(weights='imagenet', include_top=True)
 
 # Load the trained model for defect detection
-defect_model = defect_model.h5  # Replace 'model' with the actual name of your model
+defect_model_path = 'defect_model.h5'  # Assuming your model is in the root directory
+defect_model = load_model(defect_model_path)
+
+# Define image dimensions
+img_width, img_height = 150, 150
+
+# Define the feature extraction model
+feature_model = MobileNetV2(weights='imagenet', include_top=False, input_shape=(img_width, img_height, 3))
 
 def classify_image(img_path):
     # Load and preprocess the image
@@ -49,5 +54,3 @@ if uploaded_file is not None:
         st.write("Defect Detected!")
     else:
         st.write("No Defect Detected.")
-
-# Save this file and confirm when you are ready to deploy.

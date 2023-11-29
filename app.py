@@ -24,6 +24,7 @@ def classify_image(img_path):
 
     return prediction[0][0]
 
+
 # Streamlit UI
 st.title("Defect Detection Dashboard")
 

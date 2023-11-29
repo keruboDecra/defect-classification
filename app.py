@@ -63,8 +63,9 @@ if uploaded_file is not None:
     prediction = classify_image(uploaded_file)
 
     # Display the result
-    if prediction > 0.5:
+    if prediction is not None and prediction > 0.5:
         st.write("Defect Detected!")
-    else:
+    elif prediction is not None:
         st.write("No Defect Detected.")
+
 

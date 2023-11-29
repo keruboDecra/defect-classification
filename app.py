@@ -10,21 +10,24 @@ from tensorflow.keras.preprocessing import image
 
 
 def classify_image(img_path):
-    # Load and preprocess the image
-    img = Image.open(img_path).convert("RGB")
-    img = img.resize((img_width, img_height))
-    img_array = np.array(img)
-    img_array = np.expand_dims(img_array, axis=0)
-    img_array = preprocess_input(img_array)
+    try:
+        # Load and preprocess the image
+        img = Image.open(img_path).convert("RGB")
+        img = img.resize((img_width, img_height))
+        img_array = np.array(img)
+        img_array = np.expand_dims(img_array, axis=0)
+        img_array = preprocess_input(img_array)
 
-    # Extract features using MobileNetV2
-    features = feature_model.predict(img_array)
+        # Extract features using MobileNetV2
+        features = feature_model.predict(img_array)
 
-    # Predict defect using the trained model
-    prediction = defect_model.predict(features)
+        # Predict defect using the trained model
+        prediction = defect_model.predict(features)
 
-    return prediction[0][0]
-
+        return prediction[0][0]
+    except Exception as e:
+        print(f"Error during classification: {e}")
+        return None
 
 
 # Streamlit UI

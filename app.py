@@ -24,13 +24,13 @@ def classify_image(img_path):
         # Predict defect using the trained model
         prediction = defect_model.predict(features)
 
-        if prediction is not None and isinstance(prediction[0][0], (float, int)):
+        if prediction is not None:
             print(f"Prediction Value: {prediction[0][0]}")
 
-            # Convert the prediction to a float (in case it's a string)
-            prediction_value = float(prediction[0][0])
+            # Convert prediction to a float (in case it's a string)
+            prediction_value = float(prediction[0][0]) if isinstance(prediction[0][0], (float, int, str)) else None
 
-            if prediction_value > 0.5:
+            if prediction_value is not None and prediction_value > 0.5:
                 print("Defect Detected!")
                 return "Defect Detected!"
             else:
@@ -42,6 +42,9 @@ def classify_image(img_path):
     except Exception as e:
         print(f"Error during classification: {e}")
         return "Error during classification. Please check the logs for details."
+
+
+
 
 # Streamlit UI
 st.title("Defect Detection Dashboard")

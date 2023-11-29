@@ -23,6 +23,8 @@ from tensorflow.keras.layers import Flatten
 
 # ...
 
+# ...
+
 def classify_image(img_path):
     # Load and preprocess the image
     img = image.load_img(img_path, target_size=(img_width, img_height))
@@ -34,7 +36,7 @@ def classify_image(img_path):
     features = feature_model.predict(img_array)
 
     # Flatten the spatial dimensions
-    features_flat = Flatten()(features)
+    features_flat = features.reshape((1, -1))  # Reshape to (1, 32000)
 
     # Print information for debugging
     print("Shape of features:", features_flat.shape)
@@ -54,7 +56,6 @@ def classify_image(img_path):
         return prediction[0][0]
     else:
         return None
-
 
 # Streamlit UI
 st.title("Defect Detection Dashboard")

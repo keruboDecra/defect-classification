@@ -26,7 +26,11 @@ def classify_image(img_path):
 
         if prediction is not None:  # Add this line
             print(f"Prediction Value: {prediction[0][0]}")
-            if prediction[0][0] > 0.5:
+
+            # Convert the prediction to a float (in case it's a string)
+            prediction_value = float(prediction[0][0])
+
+            if prediction_value > 0.5:
                 print("Defect Detected!")
                 return "Defect Detected!"
             else:
@@ -38,7 +42,6 @@ def classify_image(img_path):
     except Exception as e:
         print(f"Error during classification: {e}")
         return "Error during classification. Please check the logs for details."
-
 
 
 # Streamlit UI

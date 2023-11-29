@@ -24,10 +24,13 @@ def classify_image(img_path):
         # Predict defect using the trained model
         prediction = defect_model.predict(features)
 
+        print(f"Prediction Value: {prediction[0][0]}")  # Add this line
+
         return prediction[0][0]
     except Exception as e:
         print(f"Error during classification: {e}")
         return None
+
 
 
 # Streamlit UI
